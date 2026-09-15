@@ -367,11 +367,3 @@ Their definitions are in the `src/features/` files.
   the models in `models/<task>/` were trained. Retrain, or restore the list.
 * **`no trained models in models/<task>`** — you are on a task you have not
   trained yet (check `APHASIA_TASK` / `TASK`), or `train.py` has not finished.
-
----
-
-## Citation
-
-If you use this classifier, please cite the accompanying paper
-(*Simulating Language Impairment via Causal Head Ablation*) and AphasiaBank
-(MacWhinney, Fromm, Forbes & Holland, 2011).
