@@ -1,0 +1,176 @@
+{
+  "features": [
+    "Total_Utts",
+    "MLU_Utts",
+    "FREQ_types",
+    "FREQ_tokens",
+    "FREQ_TTR",
+    "rep_shortest_len",
+    "rep_shortest_count",
+    "rep_max_count",
+    "cossim_delta_semantic",
+    "cossim_delta_syntactic",
+    "mean_surp",
+    "std_surp",
+    "p90_surp",
+    "p95_surp",
+    "max_surp",
+    "frac_high_surp"
+  ],
+  "text_encoder": "BAAI/bge-large-en-v1.5",
+  "surprisal_model": "meta-llama/Llama-2-7b-chat-hf",
+  "n_seeds": 20,
+  "classes": [
+    "aphasia",
+    "control"
+  ],
+  "per_seed": [
+    {
+      "seed": 0,
+      "accuracy": 0.9344978165938864,
+      "aphasia_f1": 0.9480968858131488,
+      "precision": 0.9785714285714285,
+      "recall": 0.9194630872483222
+    },
+    {
+      "seed": 1,
+      "accuracy": 0.9475982532751092,
+      "aphasia_f1": 0.9600000000000001,
+      "precision": 0.9536423841059603,
+      "recall": 0.9664429530201343
+    },
+    {
+      "seed": 2,
+      "accuracy": 0.925764192139738,
+      "aphasia_f1": 0.9427609427609427,
+      "precision": 0.9459459459459459,
+      "recall": 0.9395973154362416
+    },
+    {
+      "seed": 3,
+      "accuracy": 0.9563318777292577,
+      "aphasia_f1": 0.9662162162162162,
+      "precision": 0.9727891156462585,
+      "recall": 0.959731543624161
+    },
+    {
+      "seed": 4,
+      "accuracy": 0.9519650655021834,
+      "aphasia_f1": 0.962457337883959,
+      "precision": 0.9791666666666666,
+      "recall": 0.9463087248322147
+    },
+    {
+      "seed": 5,
+      "accuracy": 0.9388646288209607,
+      "aphasia_f1": 0.9527027027027025,
+      "precision": 0.9591836734693877,
+      "recall": 0.9463087248322147
+    },
+    {
+      "seed": 6,
+      "accuracy": 0.9475982532751092,
+      "aphasia_f1": 0.958904109589041,
+      "precision": 0.9790209790209791,
+      "recall": 0.9395973154362416
+    },
+    {
+      "seed": 7,
+      "accuracy": 0.9563318777292577,
+      "aphasia_f1": 0.9662162162162162,
+      "precision": 0.9727891156462585,
+      "recall": 0.959731543624161
+    },
+    {
+      "seed": 8,
+      "accuracy": 0.9519650655021834,
+      "aphasia_f1": 0.962457337883959,
+      "precision": 0.9791666666666666,
+      "recall": 0.9463087248322147
+    },
+    {
+      "seed": 9,
+      "accuracy": 0.9344978165938864,
+      "aphasia_f1": 0.9480968858131488,
+      "precision": 0.9785714285714285,
+      "recall": 0.9194630872483222
+    },
+    {
+      "seed": 10,
+      "accuracy": 0.9519650655021834,
+      "aphasia_f1": 0.9627118644067796,
+      "precision": 0.9726027397260274,
+      "recall": 0.9530201342281879
+    },
+    {
+      "seed": 11,
+      "accuracy": 0.9563318777292577,
+      "aphasia_f1": 0.9666666666666668,
+      "precision": 0.9602649006622517,
+      "recall": 0.9731543624161074
+    },
+    {
+      "seed": 12,
+      "accuracy": 0.9388646288209607,
+      "aphasia_f1": 0.9536423841059601,
+      "precision": 0.9411764705882353,
+      "recall": 0.9664429530201343
+    },
+    {
+      "seed": 13,
+      "accuracy": 0.9563318777292577,
+      "aphasia_f1": 0.9664429530201343,
+      "precision": 0.9664429530201343,
+      "recall": 0.9664429530201343
+    },
+    {
+      "seed": 14,
+      "accuracy": 0.9694323144104804,
+      "aphasia_f1": 0.9768976897689768,
+      "precision": 0.961038961038961,
+      "recall": 0.9932885906040269
+    },
+    {
+      "seed": 15,
+      "accuracy": 0.9301310043668122,
+      "aphasia_f1": 0.9480519480519481,
+      "precision": 0.9182389937106918,
+      "recall": 0.9798657718120806
+    },
+    {
+      "seed": 16,
+      "accuracy": 0.9563318777292577,
+      "aphasia_f1": 0.9655172413793103,
+      "precision": 0.9929078014184397,
+      "recall": 0.9395973154362416
+    },
+    {
+      "seed": 17,
+      "accuracy": 0.9563318777292577,
+      "aphasia_f1": 0.9657534246575343,
+      "precision": 0.986013986013986,
+      "recall": 0.9463087248322147
+    },
+    {
+      "seed": 18,
+      "accuracy": 0.9650655021834061,
+      "aphasia_f1": 0.9727891156462585,
+      "precision": 0.9862068965517241,
+      "recall": 0.959731543624161
+    },
+    {
+      "seed": 19,
+      "accuracy": 0.9519650655021834,
+      "aphasia_f1": 0.962457337883959,
+      "precision": 0.9791666666666666,
+      "recall": 0.9463087248322147
+    }
+  ],
+  "ensemble": {
+    "accuracy": 0.9568281938325991,
+    "aphasia_f1": 0.96673455532926,
+    "precision": 0.9740082079343365,
+    "recall": 0.9595687331536388,
+    "n_transcripts_scored": 1135
+  }
+}

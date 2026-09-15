@@ -1,0 +1,7 @@
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# outputs that predict.py writes next to its input; users generate these themselves
+*_scored.csv
