@@ -77,13 +77,10 @@ df.to_csv("data/cinderella/transcripts.csv", index=False)   # browse in Excel
 The text is all `predict.py` has for a new speaker, so a new feature must be
 computable from `text_response` alone. A loop that works:
 
-1. **Look.** Read narratives from each group side by side (snippet above)
-   and note what differs: fragments, missing determiners, verb-less
-   utterances, circumlocutions, word-finding stalls, …
-2. **Measure it.** Write a function `compute(text) -> dict` that turns one
+1. Write a function `compute(text) -> dict` that turns one
    transcript into one or more numbers. `src/features/narrative.py` is the
    simplest one to copy (about 60 lines, no models).
-3. **Check that it separates the groups.** Apply it to every transcript and
+2. **Check that it separates the groups.** Apply it to every transcript and
    compare the groups:
 
    ```python
@@ -93,7 +90,7 @@ computable from `text_response` alone. A loop that works:
 
    A feature whose distribution is the same for `Control` and the aphasia
    groups will not help the classifier, however sensible it sounds.
-4. **Add it.** Either paste the column into `features.csv` (keep the row
+3. **Add it.** Either paste the column into `features.csv` (keep the row
    order and `File_DB`) or wire the function into `build_features.py` and
    `predict.py` as the main README describes; then add its name to
    `config.FEATURES` and retrain.
