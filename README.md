@@ -17,7 +17,8 @@ per-transcript predictions behind these numbers are in
 On hand-labelled language-model outputs the Cinderella classifier has perfect
 precision (it never calls a genuinely fluent narrative aphasic).
 
-This folder is self-contained. You can:
+This folder is self-contained once the transcripts are in place
+(Installation §5). You can:
 
 * **train** the classifier on the included data (or your own),
 * **change** which features, models and data it uses by editing one file, and
@@ -37,10 +38,14 @@ conda create -n aphasia python=3.11 -y && conda activate aphasia
 pip install torch --index-url https://download.pytorch.org/whl/cu126   # GPU; see "Installation" for CPU
 pip install -r requirements.txt
 
-# 2. train on the included features (about 8 minutes per seed on one GPU)
+# 2. put the transcripts in place (shared separately, not in this repository;
+#    see "Installation > 5. Get the transcripts")
+unzip -o aphasia_classifier_transcripts.zip
+
+# 3. train on the included features (about 8 minutes per seed on one GPU)
 python src/train.py --n-seeds 3
 
-# 3. score new transcripts
+# 4. score new transcripts
 python src/predict.py --csv data/cinderella/example_new_transcripts.csv --text-column transcript
 
 # the same, for the sandwich task:
@@ -49,7 +54,7 @@ APHASIA_TASK=sandwich python src/predict.py --csv data/sandwich/example_new_tran
 ```
 
 The included `data/<task>/features.csv` already holds every feature for every
-transcript, so step 2 needs no language model — only the text encoder, which
+transcript, so step 3 needs no language model — only the text encoder, which
 downloads automatically (~1.3 GB).
 
 ---
@@ -74,7 +79,7 @@ aphasia_classifier/
 │       └── surprisal.py      ← language-model unpredictability
 ├── data/
 │   ├── cinderella/           ← one folder per task, same layout in each:
-│   │   ├── transcripts.json      the narratives + labels
+│   │   ├── transcripts.json      the narratives + labels (shared separately, not in git)
 │   │   ├── features.csv          the numeric feature table (precomputed)
 │   │   └── example_new_transcripts.csv
 │   ├── sandwich/
@@ -131,13 +136,39 @@ If you would rather avoid this, open `src/config.py` and set
 `SURPRISAL_MODEL = "gpt2-xl"` (open, 1.5B parameters, runs on any GPU),
 then rebuild the surprisal features and retrain — see *Changing the models*.
 
-### 5. Check it works
+### 5. Get the transcripts
+
+The corpus itself — `data/cinderella/transcripts.json` and
+`data/sandwich/transcripts.json` — is **not in this repository**. The
+narratives come from AphasiaBank, whose terms of use do not allow us to
+redistribute them, so the maintainer shares them with collaborators directly
+as a single file, `aphasia_classifier_transcripts.zip` (about 1 MB).
+
+Put the zip in the `aphasia_classifier/` folder and unpack it there:
+
+```bash
+unzip -o aphasia_classifier_transcripts.zip
+# creates data/cinderella/transcripts.json and data/sandwich/transcripts.json
+```
+
+or open the zip and copy the two files into `data/cinderella/` and
+`data/sandwich/` by hand. Both paths are listed in `.gitignore`, so they can
+never be committed by accident. Please keep the files within the terms you
+accepted with AphasiaBank and do not pass them on.
+
+Every script reads them: `train.py` takes the text and labels from them,
+`predict.py` uses them as the reference corpora for the two similarity
+features, and `build_features.py` computes the feature table from them. If
+you bring your own corpus instead (*Use your own transcripts* below), your
+own file plays the same role and the zip is not needed.
+
+### 6. Check it works
 
 ```bash
 python -c "import torch, transformers, peft, sentence_transformers; print('ok, GPU:', torch.cuda.is_available())"
 ```
 
-### 6. How much GPU memory you need
+### 7. How much GPU memory you need
 
 Measured peak memory on an NVIDIA RTX A6000 with the default settings
 (`MAX_TOKENS = 384`). Add roughly 1 GB on top of any figure for the CUDA
@@ -352,6 +383,9 @@ Their definitions are in the `src/features/` files.
 
 ## Troubleshooting
 
+* **`FileNotFoundError: ... data/<task>/transcripts.json`** — the transcripts
+  are not part of the repository. Unpack `aphasia_classifier_transcripts.zip`
+  in this folder (Installation §5).
 * **`OSError: ... gated repo`** — you need Llama-2 access (Installation §4), or
   switch `SURPRISAL_MODEL` to `"gpt2-xl"`.
 * **CUDA out of memory during training** — lower `BATCH_SIZE` to 2, or

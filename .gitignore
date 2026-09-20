@@ -5,3 +5,9 @@ __pycache__/
 
 # outputs that predict.py writes next to its input; users generate these themselves
 *_scored.csv
+
+# AphasiaBank transcripts. TalkBank's terms do not allow redistributing the
+# corpus, so the transcript files are shared with collaborators separately
+# (see "Getting the transcripts" in README.md) and never committed.
+data/*/transcripts.json
+aphasia_classifier_transcripts.zip
