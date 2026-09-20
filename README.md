@@ -138,11 +138,11 @@ then rebuild the surprisal features and retrain — see *Changing the models*.
 
 ### 5. Get the transcripts
 
-The corpus itself — `data/cinderella/transcripts.json` and
-`data/sandwich/transcripts.json` — is **not in this repository**. The
+The corpus itself (`data/cinderella/transcripts.json` and
+`data/sandwich/transcripts.json`) is **not in this repository**. The
 narratives come from AphasiaBank, whose terms of use do not allow us to
 redistribute them, so the maintainer shares them with collaborators directly
-as a single file, `aphasia_classifier_transcripts.zip` (about 1 MB).
+as a single file, `aphasia_classifier_transcripts.zip`.
 
 Put the zip in the `aphasia_classifier/` folder and unpack it there:
 
